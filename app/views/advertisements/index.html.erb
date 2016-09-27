@@ -1,0 +1,14 @@
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+
+			<h1>Advertisements</h1>
+
+			<% @advertisements.each do |advertisement| %>
+				<h4><%= link_to advertisement.title, advertisement_path(advertisement) %></h4>
+			<% end %>
+
+		</div>
+	</div>
+</div>

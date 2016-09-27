@@ -1,0 +1,39 @@
+
+<table>
+	<tr>
+		<th>Title : </th>
+		<td><%= @advertisement.title %></td>
+	</tr>
+	<tr>
+		<th>Copy : </th>
+		<td><%= @advertisement.copy %></td>
+	</tr>
+	<tr>
+		<th>Price : </th>
+		<td><%= @advertisement.price %></td>
+	</tr>
+</table>
+
+
+<div class="container">
+  <h2>Advertisements</h2>
+  <p>These are the current advertisements available:</p>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Copy</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= @advertisement.title %></td>
+        <td><%= @advertisement.copy %></td>
+        <td><%= number_to_currency @advertisement.price %></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
