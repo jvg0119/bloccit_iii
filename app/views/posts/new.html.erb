@@ -1,2 +1,27 @@
-<h1>Posts#new</h1>
-<p>Find me in app/views/posts/new.html.erb</p>
+
+<div class="row">
+	<div class="col-md-8">
+
+		<h1>New Post</h1>
+
+		<%= form_for @post do |f| %>
+
+			<div class="form-group">
+				<%= f.label :title %>
+				<%= f.text_field :title, class: "form-control", placeholder: "Enter Title", autofocus: true %>
+			</div>
+
+			<div class="form-group">
+				<%= f.label :body %>
+				<%= f.text_area :body, rows: 4, class: "form-control", placeholder: "Enter Body" %>
+			</div>
+
+			<div class="form-group">
+				<%= f.submit class: "btn btn-default" %>
+			</div>
+
+		<% end %>
+
+	</div>
+</div>
+

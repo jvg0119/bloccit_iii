@@ -1,0 +1,17 @@
+
+<% if flash[:notice] %>
+	<div class="alert alert-success">
+		<button type="button" class="close" data-dismiss="alert">&times;</button>
+  		<%= flash[:notice] %>
+	</div>
+<% elsif flash[:error] %>
+	<div class="alert alert-danger">
+  		<%= flash[:error] %>
+  	</div>
+<% elsif flash[:alert] %>
+	<div class="alert alert-warning">
+  		<%= flash[:alert] %>
+  	</div>
+<%# else %>
+
+<% end %>
