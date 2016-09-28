@@ -1,39 +1,30 @@
 <nav class="navbar navbar-default">
   <div class="container-fluid">
 
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#">Bloccit App</a>
-    </div>
 
     <ul class="nav navbar-nav">
-      <!-- <li class="active"><a href="#">Home</a></li> -->
       <li class="<%= active?(root_path) %>">
         <%= link_to "Home", root_path %>
       </li>
       <li class="<%= active?(posts_path) %>">
         <%= link_to "Bloccit", posts_path %>
       </li>      
-      <li><%#= link_to "All Posts", '#' %></li>
-      <li><%#= link_to "Contact", contact_path %></li>
       <li class="<%= active?(about_path) %>">
         <%= link_to "About", about_path %>
       </li>
     </ul>
 
     <ul class="nav navbar-nav navbar-right">
-       <%# if current_user %>
+       <% if current_user %>
         <div class="navbar-header">
-          <a class="navbar-brand" href="#">Hello <%#= current_user.name %><%#= @posts[1].title %></a>
+          <a class="navbar-brand" href="#">Hello <%= current_user.name %>
         </div>
 
-       <li><%= link_to "Sign Out",'#', method: :delete, class: "glyphicon glyphicon-log-out" %></li>
-       <li><%#= link_to "Sign Out", destroy_user_session_path, method: :delete, class: "glyphicon glyphicon-log-out" %></li>
-      <%# else %>
-        <li><%= link_to "Sign Up", '#', class: "glyphicon glyphicon-user" %></li>
-        <li><%#= link_to "Sign Up", new_user_registration_path, class: "glyphicon glyphicon-user" %></li>
-        <li><%= link_to "Sign In", '#', class: "glyphicon glyphicon-log-in" %></li>
-        <li><%#= link_to "Sign In", new_user_session_path, class: "glyphicon glyphicon-log-in" %></li>
-      <%# end %>
+       <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: "glyphicon glyphicon-log-out" %></li>
+       <% else %>
+        <li><%= link_to "Sign Up", new_user_registration_path, class: "glyphicon glyphicon-user" %></li>
+        <li><%= link_to "Sign In", user_session_path, class: "glyphicon glyphicon-log-in" %></li>
+      <% end %>
     </ul>
 
   </div>

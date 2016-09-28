@@ -62,5 +62,10 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'faker', '~> 1.6', '>= 1.6.6'
+gem 'devise', '~> 4.2'
+gem 'dotenv-rails', :groups => [:development, :test]
+
+
+
 
 
