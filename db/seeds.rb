@@ -6,16 +6,16 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-1.upto(3) do 
-	user = User.new(
-		name: Faker::Name.name, 
-		email: Faker::Internet.email,
-		password: "password",
-		password_confirmation: "password"
-		)
-	user.skip_confirmation!
-	user.save!
-end
+# 1.upto(3) do 
+# 	user = User.new(
+# 		name: Faker::Name.name, 
+# 		email: Faker::Internet.email,
+# 		password: "password",
+# 		password_confirmation: "password"
+# 		)
+# 	user.skip_confirmation!
+# 	user.save!
+# end
 
 user = User.new(
 		name: "Joe", 
@@ -55,6 +55,25 @@ user = User.new(
 		)
 user.skip_confirmation!
 user.save!
+
+user = User.new(
+		name: "John", 
+		email: "john@example.com",
+		password: "password",
+		password_confirmation: "password"
+		)
+user.skip_confirmation!
+user.save!
+
+user = User.new(
+		name: "James", 
+		email: "james@example.com",
+		password: "password",
+		password_confirmation: "password"
+		)
+user.skip_confirmation!
+user.save!
+
 
 users = User.all 
 

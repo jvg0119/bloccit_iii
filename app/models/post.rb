@@ -7,6 +7,7 @@ class Post < ApplicationRecord
 #	default_scope { order( created_at: 'desc'  ) } # OK 
 	default_scope { order('created_at DESC') }
 
+#	scope :limit_5, -> { Post.limit(5) }
 
 
 end

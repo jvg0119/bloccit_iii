@@ -6,6 +6,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
+
   def admin?
   	self.role == "admin"
   end
@@ -13,6 +14,8 @@ class User < ApplicationRecord
   def moderator?
   	role == "moderator"
   end
+
+  
 
 
 end
