@@ -1,2 +1,17 @@
-<h1>Posts#edit</h1>
-<p>Find me in app/views/posts/edit.html.erb</p>
+<h1>Edit Post: <%= @post.title %></h1>
+
+<div class="row">
+	<div class="col-md-4">
+
+		<h4>Guidlines for editing posts</h4>
+		<ul>
+			<li>Make sure you have a title and a body.</li>
+			<li>Make sure the body describes your title.</li>
+			<li>The use of profanity will get you banned.</li>
+		</ul>
+
+	</div>
+
+	<%= render 'form' %>
+
+</div>

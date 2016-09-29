@@ -1,5 +1,10 @@
 <h1>Posts</h1>
 
+<%# if policy(@posts).new? %>
+<%#= link_to "New Post", new_post_path, class: 'btn btn-default' if policy(@posts).new? %>
+<%= link_to "New Post", new_post_path, class: 'btn btn-default' if policy(Post.new).create? %>
+<%# end %>
+
 <% @posts.each do |post| %>
 	<div class="media">
     	<div class="media-body">
@@ -14,3 +19,4 @@
      	</div>
    	</div>
 <% end %>
+
