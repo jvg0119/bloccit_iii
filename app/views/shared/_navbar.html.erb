@@ -6,8 +6,9 @@
       <li class="<%= active?(root_path) %>">
         <%= link_to "Home", root_path %>
       </li>
-      <li class="<%= active?(posts_path) %>">
-        <%= link_to "Bloccit", posts_path %>
+      <li class="<%#= active?(posts_path) %>">
+      <li class="<%= active?(topics_path) %>">
+        <%= link_to "Bloccit", topics_path %>
       </li>      
       <li class="<%= active?(about_path) %>">
         <%= link_to "About", about_path %>

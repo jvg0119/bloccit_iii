@@ -1,0 +1,16 @@
+<h1>Topics</h1>
+
+<%= link_to "New Topic", new_topic_path, class: 'btn btn-default' if policy(Topic.new).create? %>
+
+<% @topics.each do |topic| %>
+  <div class="media">
+      <div class="media-body">
+          <h4 class="media-heading">
+            <%= link_to topic.name, topic %>
+          </h4>
+      </div>
+    </div>
+<% end %>
+
+
+

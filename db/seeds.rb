@@ -6,6 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+# users =======================================
 1.upto(3) do 
 	user = User.new(
 		name: Faker::Name.name, 
@@ -58,15 +59,27 @@ user.save!
 
 users = User.all 
 
+# topics =======================================
+1.upto(15) do 
+	Topic.create!(
+		name: Faker::Lorem.sentence(3),
+		description: Faker::Lorem.paragraph
+		)
+end
+topics = Topic.all
+
+# posts =======================================
 1.upto(50) do 
 	Post.create!(
 		user: users.sample,
+		topic: topics.sample,
 		title: Faker::Lorem.sentence,
 		body: Faker::Lorem.paragraph
 		)
 end
 posts = Post.all
 
+# comments =======================================
 1.upto(100) do 
 	Comment.create!(
 		post: posts.sample,
@@ -79,6 +92,7 @@ puts "*".center(40,"*")
 puts
 puts "Done Seeding".center(40)
 puts "#{User.count} users were created.".center(40)
+puts "#{Topic.count} topics were created.".center(40)
 puts "#{Post.count} posts were created.".center(40)
 puts "#{Comment.count} comments were created.".center(40)
 puts
