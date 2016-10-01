@@ -1,15 +1,16 @@
 class PostsController < ApplicationController
 
-  # def index
-  #   @topic = Topic.find(params[:topic_id])
-  # 	@posts = Post.all
-  #   authorize @posts
-  # end
+  def index
+    @topic = Topic.find(params[:topic_id])
+  	@posts = Post.all
+    authorize @posts
+  end
 
   def show
     #raise
     @topic = Topic.find(params[:topic_id])
   	@post = Post.find(params[:id])
+    @summary = @post.summary
     authorize @post
   end
 

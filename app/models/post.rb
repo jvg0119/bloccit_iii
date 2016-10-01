@@ -2,6 +2,8 @@ class Post < ApplicationRecord
 	has_many :comments
 	belongs_to :user
 	belongs_to :topic
+#	has_one :summary
+	has_one :summary
 
 #	validates :body, presence: true
 
