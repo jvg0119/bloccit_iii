@@ -1,5 +1,7 @@
 class PostsController < ApplicationController
 
+  before_action :set_post
+
   # def index
   #   @topic = Topic.find(params[:topic_id])
   # 	@posts = Post.all
@@ -8,23 +10,24 @@ class PostsController < ApplicationController
 
   def show
     #raise
-    @topic = Topic.find(params[:topic_id])
+    # @topic = Topic.find(params[:topic_id]) # set_post
   	@post = Post.find(params[:id])
     authorize @post
   end
 
   def new
-    @topic = Topic.find(params[:topic_id])
+    # @topic = Topic.find(params[:topic_id]) # set_post
     @post = Post.new
     authorize @post
   end
 
   def create    
-    @topic = Topic.find(params[:topic_id])  
+    # @topic = Topic.find(params[:topic_id]) # set_post 
  #   @post = Post.new(params.require(:post).permit(:title, :body))
  #   @post.topic = @topic 
  #   @post.user = current_user
-    @post = @topic.posts.new(params.require(:post).permit(:title, :body))
+    # @post = @topic.posts.new(params.require(:post).permit(:title, :body))
+    @post = @topic.posts.new(post_params)
     @post.user = current_user
     authorize @post
   #  byebug
@@ -40,17 +43,18 @@ class PostsController < ApplicationController
 
   def edit
     #raise
-    @topic = Topic.find(params[:topic_id])
+    # @topic = Topic.find(params[:topic_id]) # set_post
     @post = Post.find(params[:id])
     authorize @post
   end
 
   def update
     #raise
-    @topic = Topic.find(params[:topic_id])
+    # @topic = Topic.find(params[:topic_id]) # set_post
     @post = Post.find(params[:id])
     authorize @post 
-    if @post.update_attributes(params.require(:post).permit(:title, :body))
+    # if @post.update_attributes(params.require(:post).permit(:title, :body))
+    if @post.update_attributes(post_params)
       flash[:notice] = "Your post was updated successfully!"
       redirect_to [@topic, @post] 
     else
@@ -59,6 +63,15 @@ class PostsController < ApplicationController
     end
   end
 
+private
+
+  def set_post 
+     @topic = Topic.find(params[:topic_id])   
+  end
+
+  def post_params
+    params.require(:post).permit(:title, :body)
+  end
 
 end
 
