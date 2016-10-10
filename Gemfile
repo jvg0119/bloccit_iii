@@ -65,6 +65,8 @@ gem 'faker', '~> 1.6', '>= 1.6.6'
 gem 'devise', '~> 4.2'
 gem 'dotenv-rails', :groups => [:development, :test]
 gem 'pundit', '~> 1.1'
+gem 'redcarpet'
+
 
 
 

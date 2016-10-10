@@ -1,5 +1,12 @@
-<h1><%= @post.title %></h1>
-<h4><%= @post.body %></h4>
+<h1><%= markdown_to_html(@post.title) %></h1>
+
+<div class="row">
+	<div class="col-md-8">
+		<p><%= markdown_to_html(@post.body) %></p>
+	</div>
+</div>
+
+<%#= raw Markdown.new(@post.body).to_html %>
 
 <%= link_to "Edit Post", edit_topic_post_path(@topic, @post), class: 'btn btn-default' if policy(@post).edit? %>
 <%#= link_to "Edit", edit_post_path, class: 'btn btn-default' if policy(Post.find(params[:id])).edit? %>
