@@ -19,31 +19,6 @@ module ApplicationHelper
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 end
 
 

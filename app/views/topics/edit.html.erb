@@ -10,7 +10,13 @@
 		</ul>
 	</div>
 
-<%= render 'form' %>
+
+	<div class="col-md-6">
+
+		<%#= render 'form' %>
+		<%= render partial: 'form', locals: { topic: @topic } %>
+
+	</div>
 
 	
 </div>
