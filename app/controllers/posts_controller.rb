@@ -31,7 +31,7 @@ class PostsController < ApplicationController
     @post.user = current_user
     authorize @post
   #  byebug
-    if @post.save!   
+    if @post.save  # the @post.save!  will stop the app; use for troubleshooting only   
       flash[:notice] = "Your post was saved successfully!"
     #  redirect_to topic_post_path(@topic, @post)  # OK
       redirect_to [@topic, @post]  # space is needed
