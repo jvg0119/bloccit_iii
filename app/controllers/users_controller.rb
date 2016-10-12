@@ -2,7 +2,8 @@ class UsersController < ApplicationController
 
   before_action :authenticate_user!
 
-  def update 
+  def update
+  #raise 
   	if current_user.update_attributes(user_params)
   		flash[:notice] = "User was updated successfully!"
   		redirect_to edit_user_registration_path
@@ -15,7 +16,7 @@ class UsersController < ApplicationController
 private 
   
   def user_params
-  	params.require(:user).permit(:name)
+  	params.require(:user).permit(:name, :avatar)
   end
 
 

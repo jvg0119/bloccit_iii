@@ -67,6 +67,9 @@ gem 'dotenv-rails', :groups => [:development, :test]
 gem 'pundit', '~> 1.1'
 gem 'redcarpet'
 
+gem 'carrierwave'
+gem 'mini_magick'
+gem 'fog'
 
 
 

@@ -4,7 +4,7 @@ class TopicsController < ApplicationController
 
   def index
   	@topics = Topic.all
-    authorize @topics  	
+    authorize @topics 
   end
 
   def show
