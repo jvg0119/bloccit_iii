@@ -3,6 +3,8 @@ class Post < ApplicationRecord
 	belongs_to :user
 	belongs_to :topic
 
+	mount_uploader :image, ImageUploader
+
 	validates :title, presence: true, length: { minimum: 5 }
 	validates :body, presence: true, length: { minimum: 20 }
 	validates :user, :topic, presence: true

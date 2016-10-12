@@ -4,11 +4,14 @@
 	<div class="col-md-8">
 
 		<small>
-			<%= image_tag(current_user.avatar.small) if current_user.avatar? %>
 			submitted <%= time_ago_in_words(@post.created_at) %> ago by
-			<%= @post.user.name %>
+			<%= @post.user.name %>	
+			<%= image_tag(@post.user.avatar.small) if @post.user.avatar? %>
 		</small>
-		<p><%= markdown_to_html(@post.body) %></p>
+		
+		<p><%= markdown_to_html(@post.body) %>
+		<p><%= image_tag(@post.image.profile.url) if @post.image? %></p>
+	
 	</div>
 </div>
 

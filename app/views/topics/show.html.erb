@@ -5,22 +5,29 @@
 <div class="row">
 	<div class="col-md-8">
 		<p class="lead"><%= @topic.description %></p>
-		<% @posts.each do |post| %>
-		 	<div class="media">
-		    	<div class="media-body">
-		       		<h4 class="media-heading"> 
-						<%#= link_to post.title, [@topic, post] %>
-						<%= link_to markdown_to_html(post.title), topic_post_path(@topic, post) %>
-					</h4>
-		       		<p>
-		       			<%= image_tag(post.user.avatar.small) if post.user.avatar? %>
-		       			&nbsp;&nbsp;submitted <%= time_ago_in_words post.created_at %> ago
-		         		&nbsp;&nbsp;by <%= post.user.name %>
-		         		&nbsp;&nbsp;<%= pluralize post.comments.count, "Comment" %>
-		       		</p>			
+
+		<% if @posts.any? %>
+			<h3><%= pluralize(@posts.count, "Post") %></h3>
+			<% @posts.each do |post| %>
+			 	<div class="media">
+			    	<div class="media-body">
+
+			       		<h4 class="media-heading"> 
+							<%#= link_to post.title, [@topic, post] %>
+							<%= image_tag(post.image.small) if post.image? %>	
+							<%= link_to markdown_to_html(post.title), topic_post_path(@topic, post) %>
+						</h4>
+			       		<p>
+			       			<%= image_tag(post.user.avatar.small) if post.user.avatar? %>
+			       			&nbsp;&nbsp;submitted <%= time_ago_in_words post.created_at %> ago
+			         		&nbsp;&nbsp;by <%= post.user.name %>
+			         		&nbsp;&nbsp;<%= pluralize post.comments.count, "Comment" %>
+			       		</p>			
+					</div>
 				</div>
-			</div>
+			<% end %>
 		<% end %>
+
 	</div>
 	<div class="col-md-4">
 		<% if policy(Post.new).create? %>
