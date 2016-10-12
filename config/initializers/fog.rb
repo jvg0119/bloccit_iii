@@ -1,4 +1,4 @@
-#if Rails.env.development? || Rails.env.production?
+if Rails.env.development? || Rails.env.production?
 	CarrierWave.configure do |config|
 	  config.fog_credentials = {
 	    provider:               'AWS',
@@ -9,5 +9,5 @@
 	  config.fog_directory  = ENV['AWS_BUCKET']
 	  config.fog_public     = true
 	end
-#end
+end
 
