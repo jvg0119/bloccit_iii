@@ -82,6 +82,7 @@ posts = Post.all
 # comments =======================================
 1.upto(100) do 
 	Comment.create!(
+		user: users.sample,
 		post: posts.sample,
 	#	post_id: posts.sample.id,   ## OK
 		body: Faker::Lorem.paragraph

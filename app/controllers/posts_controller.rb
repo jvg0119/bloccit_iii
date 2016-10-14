@@ -12,6 +12,8 @@ class PostsController < ApplicationController
     #raise
     # @topic = Topic.find(params[:topic_id]) # set_post
   	@post = Post.find(params[:id])
+    @comments = @post.comments
+   # @comment = @post.comments.new
     authorize @post
   end
 

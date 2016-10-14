@@ -1,0 +1,5 @@
+
+	<%= image_tag(comment.user.avatar.small) if comment.user.avatar? %>
+	<%= comment.user.name %> commented <%= time_ago_in_words(comment.created_at) %> ago
+	<p><%= comment.body %></p>
+

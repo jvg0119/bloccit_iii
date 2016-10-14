@@ -4,19 +4,32 @@
 	<div class="col-md-8">
 
 		<small>
+			<%= image_tag(@post.user.avatar.small) if @post.user.avatar? %>			
 			submitted <%= time_ago_in_words(@post.created_at) %> ago by
 			<%= @post.user.name %>	
-			<%= image_tag(@post.user.avatar.small) if @post.user.avatar? %>
 		</small>
 		
 		<p><%= markdown_to_html(@post.body) %>
 		<p><%= image_tag(@post.image.profile.url) if @post.image? %></p>
-	
+
+		<%= link_to "Edit Post", edit_topic_post_path(@topic, @post), class: 'btn btn-default' if policy(@post).edit? %>
+
+		<% if @comments.count > 0 %>
+			<h3><%= pluralize(@comments.count, "Comment") %>:</h3>
+			
+			<%= render @comments %>
+
+		<% end %>
+
+		<%# if current_user %> <!-- this works also -->
+		<% if policy(@comments).create? %>
+			<%= render 'comments/form' %>
+		<% end %>
+
 	</div>
 </div>
 
 <%#= raw Markdown.new(@post.body).to_html %>
 
-<%= link_to "Edit Post", edit_topic_post_path(@topic, @post), class: 'btn btn-default' if policy(@post).edit? %>
 <%#= link_to "Edit", edit_post_path, class: 'btn btn-default' if policy(Post.find(params[:id])).edit? %>
 
