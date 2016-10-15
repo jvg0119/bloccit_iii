@@ -1,6 +1,6 @@
 <h1>Topics</h1>
 
-<%= link_to "New Topic", new_topic_path, class: 'btn btn-default' if policy(Topic.new).create? %>
+<%= link_to "New Topic", new_topic_path, class: 'btn btn-primary' if policy(Topic.new).create? %>
 
 <% @topics.each do |topic| %>
   <div class="media">
