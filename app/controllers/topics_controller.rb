@@ -1,6 +1,6 @@
 class TopicsController < ApplicationController
 
-  before_action :set_topic, only: [:show, :edit, :update]
+  before_action :set_topic, only: [:show, :edit, :update, :destroy]
 
   def index
   	# @topics = Topic.all
@@ -47,6 +47,19 @@ class TopicsController < ApplicationController
   		flash[:error] = "There was an error updating your topic. Please try again."
   		render :edit 
   	end  		
+  end
+
+  def destroy
+    #raise
+    # @topic = Topic.find(params[:id])
+    authorize @topic
+    if @topic.destroy 
+      flash[:notice] = "Your topic \"#{@topic.name}\" was deleted successfully!"
+      redirect_to topics_path
+    else
+      flash[:error] = "There was an error deleting the topic. Please try again."
+      render :show
+    end
   end
 
 private

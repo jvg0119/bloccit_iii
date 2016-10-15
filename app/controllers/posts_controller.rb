@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
 
-  before_action :set_post
+  before_action :set_topic
+  before_action :set_post, only: [:show, :edit, :update, :destroy ]
 
   # def index
   #   @topic = Topic.find(params[:topic_id])
@@ -10,21 +11,21 @@ class PostsController < ApplicationController
 
   def show
     #raise
-    # @topic = Topic.find(params[:topic_id]) # set_post
-  	@post = Post.find(params[:id])
+    # @topic = Topic.find(params[:topic_id]) # set_topic
+  	# @post = Post.find(params[:id])  # set_post
     @comments = @post.comments
    # @comment = @post.comments.new
     authorize @post
   end
 
   def new
-    # @topic = Topic.find(params[:topic_id]) # set_post
+    # @topic = Topic.find(params[:topic_id]) # set_topic
     @post = Post.new
     authorize @post
   end
 
   def create    
-    # @topic = Topic.find(params[:topic_id]) # set_post 
+    # @topic = Topic.find(params[:topic_id]) # set_topic 
  #   @post = Post.new(params.require(:post).permit(:title, :body))
  #   @post.topic = @topic 
  #   @post.user = current_user
@@ -45,15 +46,15 @@ class PostsController < ApplicationController
 
   def edit
     #raise
-    # @topic = Topic.find(params[:topic_id]) # set_post
-    @post = Post.find(params[:id])
+    # @topic = Topic.find(params[:topic_id]) # set_topic
+    # @post = Post.find(params[:id])  # set_post
     authorize @post
   end
 
   def update
     #raise
-    # @topic = Topic.find(params[:topic_id]) # set_post
-    @post = Post.find(params[:id])
+    # @topic = Topic.find(params[:topic_id]) # set_topic
+    # @post = Post.find(params[:id])  # set_post
     authorize @post 
     # if @post.update_attributes(params.require(:post).permit(:title, :body))
     if @post.update_attributes(post_params)
@@ -65,14 +66,32 @@ class PostsController < ApplicationController
     end
   end
 
+  def destroy
+    #raise
+    # @topic = Topic.find(params[:topic_id]) # set_topic   # set_post
+    # @post = Post.find(params[:id])   # set_post
+    authorize @post 
+    if @post.destroy 
+      flash[:notice] = "Your post \"#{@post.title}\" is deleted."
+      redirect_to @topic 
+    else
+      flash[:error] = "There is an error deleting your post. Please try again."
+      render :show 
+    end
+  end
+
 private
 
-  def set_post 
+  def set_topic 
      @topic = Topic.find(params[:topic_id])   
   end
 
   def post_params
     params.require(:post).permit(:title, :body, :image)
+  end
+
+  def set_post
+     @post = Post.find(params[:id])   
   end
 
 end
