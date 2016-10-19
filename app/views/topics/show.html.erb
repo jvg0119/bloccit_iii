@@ -14,6 +14,9 @@
 
 			       		<h4 class="media-heading"> 
 							<%#= link_to post.title, [@topic, post] %>
+							
+							<%= render partial: 'votes/vote', locals: { post: post } %>
+
 							<%= image_tag(post.image.small) if post.image? %>	
 							<%= link_to markdown_to_html(post.title), topic_post_path(@topic, post) %>
 						</h4>

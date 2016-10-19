@@ -3,8 +3,11 @@ require 'rails_helper'
 describe Post do 
 	describe "vote methods" do
 
-		before do 
-			@post = Post.create(title: "Post title", body: "Post body")
+		before do
+			#@topic = Topic.create(name: "Topic name", description: "topic description") 
+			#@post = @topic.posts.create(title: "Post title", body: "post body")
+			@post = Post.create(title: "Post title", body: "post body has to be long for this to work")
+			#@post.votes.create(value: 1)
 			3.times { @post.votes.create(value: 1) }
 			2.times { @post.votes.create(value: -1) }
 		end
@@ -16,7 +19,7 @@ describe Post do
 		end
 		describe '#down_votes' do 
 			it "count the number of votes with value = -1" do 
-				expect(@post.up_votes).to eq(2)
+				expect(@post.down_votes).to eq(2)
 			end
 		end
 		describe '#points' do 
