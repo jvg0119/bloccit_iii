@@ -15,6 +15,8 @@ class Post < ApplicationRecord
 	#default_scope { order('created_at DESC') }
 	default_scope { order('rank DESC')}  # order based on rank
 
+	after_create :create_vote
+
 	def up_votes
 	#	self.votes.where(value: 1).count
 		votes.where(value: 1).count
@@ -40,4 +42,15 @@ class Post < ApplicationRecord
 	
 # Note the two uses of implied self -- created_at and update_attribute.
 
+private
+
+ 	def create_vote
+ 		#self.votes.create(value: 1, user: self.user )
+ 		votes.create(value: 1, user: user )
+	 	#user.votes.create(value: 1, post: self)
+ 	end
+
 end
+
+
+
