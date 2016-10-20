@@ -1,11 +1,14 @@
 
-<div class="pull-left vote-arrows">
-	<div><%= link_to "", post_up_vote_path(post), method: :post, class: 'glyphicon glyphicon-chevron-up' %></div>
+<% if policy(Vote.new).create? %>
+	
+	<div class="pull-left vote-arrows">
+		<div><%= link_to "", post_up_vote_path(post), method: :post, class: 'glyphicon glyphicon-chevron-up' %></div>
 
-	<div><%= post.points %></div> 
+		<div><%= post.points %></div> 
 
-	<div><%= link_to "", post_down_vote_path(post), method: :post, class: 'glyphicon glyphicon-chevron-down' %></div>
-</div>
+		<div><%= link_to "", post_down_vote_path(post), method: :post, class: 'glyphicon glyphicon-chevron-down' %></div>
+	</div>
 
+<% end %>
 
 
