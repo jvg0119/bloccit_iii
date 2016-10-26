@@ -27,7 +27,9 @@ private
   		authorize @vote, :create?
   		@vote.save
   	end
-  	redirect_to :back
+  	# redirect_to :back   ## deprecated for rails 5
+    # redirect_back fallback_location: '/'
+    redirect_back fallback_location: root_path
   end 
 
 end

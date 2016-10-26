@@ -35,6 +35,8 @@ class PostsController < ApplicationController
     authorize @post
   #  byebug
     if @post.save  # the @post.save!  will stop the app; use for troubleshooting only   
+   #  @post.votes.create!(value: 1, user: current_user)   # creates a vote for your post also
+      @post.create_vote
       flash[:notice] = "Your post was saved successfully!"
     #  redirect_to topic_post_path(@topic, @post)  # OK
       redirect_to [@topic, @post]  # space is needed

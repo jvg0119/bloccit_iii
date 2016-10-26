@@ -1,7 +1,7 @@
 class Post < ApplicationRecord
 	has_many :comments, dependent: :destroy
-	belongs_to :user, optional: true # optional: true to bypass validation 
-	belongs_to :topic, optional: true  # optional: true to bypass validation
+	belongs_to :user#, optional: true # optional: true to bypass validation 
+	belongs_to :topic#, optional: true  # optional: true to bypass validation
 	has_many :votes, dependent: :destroy
 
 	mount_uploader :image, ImageUploader
@@ -15,7 +15,7 @@ class Post < ApplicationRecord
 	#default_scope { order('created_at DESC') }
 	default_scope { order('rank DESC')}  # order based on rank
 
-	after_create :create_vote
+#	after_create :create_vote # remove not a good practice because it has dependencies
 
 	def up_votes
 	#	self.votes.where(value: 1).count
@@ -27,7 +27,8 @@ class Post < ApplicationRecord
 
 
 	def down_votes
-		self.votes.where(value: -1).count	
+		#self.votes.where(value: -1).count	
+		votes.where(value: -1).count	
 	end
 
 	def points
@@ -42,13 +43,14 @@ class Post < ApplicationRecord
 	
 # Note the two uses of implied self -- created_at and update_attribute.
 
-private
+#private
 
  	def create_vote
  		#self.votes.create(value: 1, user: self.user )
- 		votes.create(value: 1, user: user )
-	 	#user.votes.create(value: 1, post: self)
+ 	#	votes.create(value: 1, user: user )
+	 	user.votes.create(value: 1, post: self)
  	end
+
 
 end
 
