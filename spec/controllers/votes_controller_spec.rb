@@ -26,6 +26,12 @@ include Devise::Test::ControllerHelpers # access to devise helpers
 		#	expect { post( :up_vote, post_id: @post.id) }.to change{ @post.up_votes }.by(1)
 			expect { post :down_vote, params: { post_id: @post.id } }.to change { @post.down_votes }.by(1)
 		end
+		# it "test only" do 
+		# 	@post = associated_post
+		# 	#post :up_vote, post_id: @post.id
+		#  	post :up_vote, params: { post_id: @post.id }  
+		# 	#process :up_vote, method: :post, params: { post_id: @post.id }  
+		# end
 	end
 	
 end
