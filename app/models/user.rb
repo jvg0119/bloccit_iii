@@ -24,7 +24,7 @@ class User < ApplicationRecord
   def favorited(post)
     self.favorites.where(post_id: post.id).first 
     # favorites.where(post_id: post.id).first
-    # favorites.find_by(post_id: post.id) # test later if the same
+    # favorites.find_by(post_id: post.id) # same as above
   end
 
 

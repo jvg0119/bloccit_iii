@@ -11,9 +11,6 @@ private
   def send_favorite_emails
   	self.post.favorites.each do |favorite| 
   		 FavoriteMailer.new_comment(favorite.user, self.post, self).deliver_now
-  	# you can use below if you declared:     post has_many :users, through: :favorites
-	# self.post.users.each do |user|   
-		# FavoriteMailer.new_comment(user,self.post,self).deliver_now 
   	end 
   end
 
