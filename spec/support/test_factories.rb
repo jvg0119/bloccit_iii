@@ -2,6 +2,7 @@ module TestFactories
 
 	def authenticated_user(options={})
 		user_options = {email: "user#{rand}@example.com", password: "password"}.merge(options)
+	#	user_options = {email: "user@example.com", password: "password"}.merge(options)
 		user = User.new(user_options)
 		user.skip_confirmation!
 		user.save # save method returns true or false
