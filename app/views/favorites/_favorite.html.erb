@@ -1,0 +1,23 @@
+
+<% if policy(Favorite.new).create? %>
+<%# if current_user %>
+	<div class="favorite">
+		<% if favorite = current_user.favorited(post) %>
+			<!-- Favorited -->
+			<%#= link_to "Favorited", "#", class: 'btn btn-danger' %>
+			<%#= link_to post_favorite_path(post, post.favorites.last), method: :delete, class: 'btn btn-danger' do %>
+			<%= link_to [post, favorite], method: :delete, class: 'btn btn-danger' do %>
+				<i class="glyphicon glyphicon-star-empty"></i>&nbsp; Unfavorite
+			<% end %>
+		<% else %>
+			<!-- Want to favorite this? --> 
+			<%#= link_to "Favorite", "#", class: 'btn btn-primary' %>
+			<%#= link_to [post, Favorite.new], method: :post, class: 'btn btn-primary' do %>
+			<%#= link_to [post, post.favorites.new], method: :post, class: 'btn btn-primary' do %>
+			<%= link_to [post, Favorite.new], method: :post, class: 'btn btn-primary' do %>
+				<i class="glyphicon glyphicon-star"> </i>&nbsp; Favorite
+			<% end %>
+		<% end %>
+	</div>
+
+<% end %>

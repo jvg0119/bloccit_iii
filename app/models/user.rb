@@ -2,6 +2,9 @@ class User < ApplicationRecord
 	has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :votes, dependent: :destroy
+  has_many :favorites, dependent: :destroy
+  # has_many :posts, through: :favorites 
+  # has_many :favorite_posts, through: :favorites, source: :post
 
   mount_uploader :avatar, AvatarUploader
   
@@ -16,6 +19,12 @@ class User < ApplicationRecord
 
   def moderator?
   	role == "moderator"
+  end
+
+  def favorited(post)
+    self.favorites.where(post_id: post.id).first 
+    # favorites.where(post_id: post.id).first
+    # favorites.find_by(post_id: post.id) # test later if the same
   end
 
 

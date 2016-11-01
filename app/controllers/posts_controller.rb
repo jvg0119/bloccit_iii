@@ -14,7 +14,7 @@ class PostsController < ApplicationController
     # @topic = Topic.find(params[:topic_id]) # set_topic
   	# @post = Post.find(params[:id])  # set_post
     @comments = @post.comments
-   # @comment = @post.comments.new
+   # @comment = @post.comments.new  # this will show an extra nil comment on the post show page
     authorize @post
   end
 

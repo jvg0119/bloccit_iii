@@ -3,6 +3,9 @@ class Post < ApplicationRecord
 	belongs_to :user#, optional: true # optional: true to bypass validation 
 	belongs_to :topic#, optional: true  # optional: true to bypass validation
 	has_many :votes, dependent: :destroy
+	has_many :favorites, dependent: :destroy
+	# has_many :users, through: :favorites
+	# has_many :favorite_users, through: :favorites, source: :user 
 
 	mount_uploader :image, ImageUploader
 
