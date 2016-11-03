@@ -4,6 +4,10 @@ class TopicPolicy < ApplicationPolicy
   	true # no restriction to access 
   end
 
+  def show?
+    record.public? || user.present?  # uses topic scope visible_to
+  end
+
   def create?
 	user.present? && user.admin?
   end
