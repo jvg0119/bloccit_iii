@@ -27,5 +27,9 @@ class User < ApplicationRecord
     # favorites.find_by(post_id: post.id) # same as above
   end
 
+  def voted(post)
+    self.votes.where(post: post).first # this is a vote object
+  end
+
 
 end

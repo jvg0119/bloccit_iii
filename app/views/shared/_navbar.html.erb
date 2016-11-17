@@ -15,7 +15,8 @@
       </li>
     </ul>
 
-    <ul class="nav navbar-nav navbar-right">
+    <!-- <ul class="nav navbar-nav navbar-right"> -->
+    <ul class="nav navbar-nav pull-right"><!-- better (user-info no change)-->
        <% if current_user %>
           <%= image_tag(current_user.avatar.small.url) if current_user.avatar? %>
           <!-- <a class="navbar-brand" href="#">Hello <%#= current_user.name %> -->

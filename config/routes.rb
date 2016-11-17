@@ -10,8 +10,10 @@ Rails.application.routes.draw do
   # end 
 
   resources :posts, only: [] do 
-    post '/up-vote' => 'votes#up_vote', as: 'up_vote'  
-    post '/down-vote' => 'votes#down_vote', as: 'down_vote'
+    # post '/up-vote' => 'votes#up_vote', as: 'up_vote'  
+    # post '/down-vote' => 'votes#down_vote', as: 'down_vote'
+    get '/up-vote' => 'votes#up_vote', as: 'up_vote'  
+    get '/down-vote' => 'votes#down_vote', as: 'down_vote'    
     resources :comments, only: [:create, :destroy]
     resources :favorites, only: [:create, :destroy]
    # the 2 below are manually written routes (same as aboves) 

@@ -16,8 +16,11 @@ include Devise::Test::ControllerHelpers # access to devise helpers
       expect( @user.favorites.find_by_post_id(@post.id) ).to be_nil # empty at start
       # post :create, { post_id: @post.id } # deprecated
       post :create, params: { post_id: @post.id } # creates a favorite
-       expect( @user.favorites.find_by_post_id(@post.id) ).not_to be_nil # not empty anymore
+      expect( @user.favorites.find_by_post_id(@post.id) ).not_to be_nil # not empty anymore
       # expect( @user.favorites.where(post_id: @post.id).first).not_to be_nil # OK; same result
+
+      expect { post :create, params: { post_id: @post.id } } # using observation matcher method
+      .to change { Favorite.count }.by(1)
     end
 
   end  ## create
@@ -31,6 +34,11 @@ include Devise::Test::ControllerHelpers # access to devise helpers
       # byebug		
   		delete :destroy, params: { post_id: @post.id, id: favorite.id } # deletes favorite
   		expect( @user.favorites.find_by_post_id(@post.id) ).to be_nil # empty now
+
+
+      favorite = @user.favorites.where(post: @post).create # create a favorite first      
+      expect{ delete :destroy, params: { post_id: @post, id: favorite } } # another way to test
+      .to change { Favorite.count }.by(-1)
   	end
 
   end ## destroy
