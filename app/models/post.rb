@@ -18,16 +18,14 @@ class Post < ApplicationRecord
 	#default_scope { order('created_at DESC') }
 	default_scope { order('rank DESC')}  # order based on rank
 
+	scope :visible_to, -> (user) { user ? all : joins(:topic).where('topics.public' => true ) } 
+
 #	after_create :create_vote # remove not a good practice because it has dependencies
 
 	def up_votes
 	#	self.votes.where(value: 1).count
 		votes.where(value: 1).count
 	end
-	# don't use the 2 below:	
-	#	Post.last.votes.where(value: 1).count
-	#	Vote.where(value: 1).count
-
 
 	def down_votes
 		#self.votes.where(value: -1).count	

@@ -7,13 +7,17 @@ describe 'Sign in flow' do
 		it "redirects to the topics index" do 
 			user = authenticated_user 
 			visit root_path
+			
 			#within  '.jumbotron' do # ok also     #'.user-info' do ## did not add
-			within  '.navbar' do # 
-         		click_link 'Sign In'
-         	end
+			
+			# within  '.navbar' do # 
+          		# click_link 'Sign In'
+          	# end
+         	click_on "sign_in id"
+ 
 			fill_in 'Email', with: user.email
        		fill_in 'Password', with: user.password
-       		#byebug
+
        		within 'form' do  # w/ or w/o within works
        			click_button 'Log in'
        		end

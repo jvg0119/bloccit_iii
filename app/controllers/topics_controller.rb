@@ -3,9 +3,9 @@ class TopicsController < ApplicationController
   before_action :set_topic, only: [:show, :edit, :update, :destroy]
 
   def index
-  	# @topics = Topic.all
-   # @topics = Topic.paginate(page: params[:page])
-   # @topics = Topic.paginate(:page => params[:page], per_page: 10).visible_to(current_user)
+    # @topics = Topic.all
+    # @topics = Topic.paginate(page: params[:page])
+    # @topics = Topic.paginate(:page => params[:page], per_page: 10).visible_to(current_user)
     @topics = Topic.visible_to(current_user).paginate(:page => params[:page], per_page: 10)
     authorize @topics
   end

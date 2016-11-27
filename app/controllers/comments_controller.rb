@@ -3,8 +3,7 @@ class CommentsController < ApplicationController
 
   def create
    # raise
-   # @topic = Topic.find(params[:topic_id])
-  	@post = Post.find(params[:post_id]) # this is already connected to topic
+  	@post = Post.find(params[:post_id])
 	  @comment = @post.comments.new(comment_params) 
     @comment.user = current_user  
     authorize @comment
@@ -18,8 +17,8 @@ class CommentsController < ApplicationController
   end
 
   def destroy   
-    #@post = Post.find(params[:post_id])
-    @comment = Comment.find(params[:id]) # already connected to post
+    @post = Post.find(params[:post_id])
+    @comment = @post.comments.find(params[:id])
     authorize @comment 
    # raise
     if @comment.destroy

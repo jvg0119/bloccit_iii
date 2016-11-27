@@ -1,0 +1,50 @@
+<!-- <h1><%#= @user.name %></h1> -->
+
+<div class="row">
+	<div class="col-md-8">
+		<div class="media">
+			<% if @user.avatar? %>
+				<div class="media-left">
+					<%= image_tag(@user.avatar.tiny.url) %>
+				</div>
+			<% end %>
+			<div class="media-body">
+				<h2 class="media-heading"><%= @user.name %></h2>
+				<p>
+					<%= pluralize @user.posts.count, "post" %>
+					<%= pluralize @user.comments.count, "comment" %>
+				</p>
+			</div>
+		</div>
+	</div>
+</div>
+ 
+<div class="tabbable"> <!-- Only required for left/right tabs -->
+  <ul class="nav nav-tabs">
+    <li class="active"><a href="#posts" data-toggle="tab">Posts</a></li>
+    <li><a href="#comments" data-toggle="tab">Comments</a></li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane active" id="posts">
+      <p><%= render @posts %></p>
+    </div>
+    <div class="tab-pane" id="comments">
+      <p><%= render @comments %></p>
+    </div>
+  </div>
+</div>
+
+
+ <%#= render @posts %>
+ <%#= render partial: 'posts/post', collection: @posts %>
+ 
+<!--  <h2>Comments</h2>
+ <%# @comments.each do |comment| %>
+   <%#= comment.body %>
+ <%# end %> -->
+<%#= render @comments %>
+
+
+
+
+

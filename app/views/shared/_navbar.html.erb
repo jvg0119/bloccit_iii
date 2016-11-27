@@ -4,12 +4,11 @@
 
     <ul class="nav navbar-nav">
       <li class="<%= active?(root_path) %>">
-        <%= link_to "Home", root_path %>
+        <%= link_to "Bloccit", root_path %>
       </li>
-      <li class="<%#= active?(posts_path) %>">
       <li class="<%= active?(topics_path) %>">
-        <%= link_to "Bloccit", topics_path %>
-      </li>      
+        <%= link_to "Topics", topics_path %>
+      </li>   
       <li class="<%= active?(about_path) %>">
         <%= link_to "About", about_path %>
       </li>
@@ -18,16 +17,31 @@
     <!-- <ul class="nav navbar-nav navbar-right"> -->
     <ul class="nav navbar-nav pull-right"><!-- better (user-info no change)-->
        <% if current_user %>
-          <%= image_tag(current_user.avatar.small.url) if current_user.avatar? %>
-          <!-- <a class="navbar-brand" href="#">Hello <%#= current_user.name %> -->
-         Hello <%= link_to (current_user.name || current_user.email), edit_user_registration_path %>
-        
-       <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: "glyphicon glyphicon-log-out" %>
+            <%= image_tag(current_user.avatar.small.url) if current_user.avatar? %>
+            <!-- <a class="navbar-brand" href="#">Hello <%#= current_user.name %> -->
+           <%#= link_to (current_user.name || current_user.email), edit_user_registration_path %>
+           <%#= link_to "Sign Out", destroy_user_session_path, method: :delete, class: "glyphicon glyphicon-log-out" %>
+           
+           Hello <%= link_to (current_user.name || current_user.email), user_path(current_user) %> ! &nbsp; 
+    
+          <%= link_to edit_user_registration_path, class: "btn btn-primary btn-md" do %>
+            <scan  class="glyphicon glyphicon-user"></scan>
+          <% end %>
+
+         <%= link_to destroy_user_session_path, method: :delete, class: "btn btn-primary btn-md"  do %>
+            <span class="glyphicon glyphicon-log-out"></span>
+         <% end %>
 
        <% else %>
-        <li><%= link_to "Sign Up", new_user_registration_path, class: "glyphicon glyphicon-user" %></li>
-        <li><%= link_to "Sign In", user_session_path, class: "glyphicon glyphicon-log-in" %></li>
-
+        <%#= link_to "Sign Up", new_user_registration_path, class: "glyphicon glyphicon-user" %>
+        <%#= link_to "Sign In", user_session_path, class: "glyphicon glyphicon-log-in" %>
+          
+          <%= link_to new_user_registration_path, class: "btn btn-primary btn-md" do %>
+            <scan class="glyphicon glyphicon-user"></scan>
+          <% end %>
+          
+          <%= link_to "",user_session_path, id: "sign_in id", class: "glyphicon glyphicon-log-in btn btn-primary btn-md" %>
+  
       <% end %>
     </ul>
 

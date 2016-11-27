@@ -1,0 +1,21 @@
+<div class="media">
+	<div class="media-body">
+
+   		<h4 class="media-heading"> 
+			<%#= link_to post.title, [@topic, post] %>
+			
+			<%= render partial: 'votes/vote', locals: { post: post } %>
+
+			<%= image_tag(post.image.tiny) if post.image? %>	
+			<%#= link_to markdown_to_html(post.title), topic_post_path(@topic, post) %>
+			<%#= link_to markdown_to_html(post.title), topic_post_path(post.topic, post) %>
+			<%= link_to markdown_to_html(post.title), [post.topic, post] %>
+		</h4>
+   		<p>
+   			<%= image_tag(post.user.avatar.tiny) if post.user.avatar? %>
+   			&nbsp;&nbsp;submitted <%= time_ago_in_words post.created_at %> ago
+     		&nbsp;&nbsp;by <%= post.user.name %>
+     		&nbsp;&nbsp;<%= pluralize post.comments.count, "Comment" %>
+   		</p>			
+	</div>
+</div>

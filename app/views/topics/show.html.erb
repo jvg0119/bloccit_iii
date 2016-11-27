@@ -8,27 +8,31 @@
 
 		<% if @posts.any? %>
 			<h3><%= pluralize(@posts.count, "Post") %></h3>
-			<% @posts.each do |post| %>
-			 	<div class="media">
+				<%= render @posts %>
+				<%#= render partial: 'posts/post', collection: @posts, locals: { topic: @topic} %>
+			
+			<%# @posts.each do |post| %> 	
+			 	<!-- <div class="media">
 			    	<div class="media-body">
 
 			       		<h4 class="media-heading"> 
 							<%#= link_to post.title, [@topic, post] %>
 							
-							<%= render partial: 'votes/vote', locals: { post: post } %>
+							<%#= render partial: 'votes/vote', locals: { post: post } %>
 
-							<%= image_tag(post.image.small) if post.image? %>	
-							<%= link_to markdown_to_html(post.title), topic_post_path(@topic, post) %>
+							<%#= image_tag(post.image.small) if post.image? %>	
+							<%#= link_to markdown_to_html(post.title), topic_post_path(@topic, post) %>
 						</h4>
 			       		<p>
-			       			<%= image_tag(post.user.avatar.small) if post.user.avatar? %>
-			       			&nbsp;&nbsp;submitted <%= time_ago_in_words post.created_at %> ago
-			         		&nbsp;&nbsp;by <%= post.user.name %>
-			         		&nbsp;&nbsp;<%= pluralize post.comments.count, "Comment" %>
+			       			<%#= image_tag(post.user.avatar.small) if post.user.avatar? %>
+			       			&nbsp;&nbsp;submitted <%#= time_ago_in_words post.created_at %> ago
+			         		&nbsp;&nbsp;by <%#= post.user.name %>
+			         		&nbsp;&nbsp;<%#= pluralize post.comments.count, "Comment" %>
 			       		</p>			
 					</div>
-				</div>
-			<% end %>
+				</div> -->
+			<%# end %>
+
 		<% end %>
 
 	</div>

@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   before_action :set_topic
   before_action :set_post, only: [:show, :edit, :update, :destroy ]
 
-  # def index
+  # def index ## moved to topic show 
   #   @topic = Topic.find(params[:topic_id])
   # 	@posts = Post.all
   #   authorize @posts
@@ -24,18 +24,17 @@ class PostsController < ApplicationController
     authorize @post
   end
 
-  def create    
+  def create
     # @topic = Topic.find(params[:topic_id]) # set_topic 
- #   @post = Post.new(params.require(:post).permit(:title, :body))
- #   @post.topic = @topic 
- #   @post.user = current_user
+    # @post = Post.new(params.require(:post).permit(:title, :body))
+    # @post.topic = @topic 
+    # @post.user = current_user
     # @post = @topic.posts.new(params.require(:post).permit(:title, :body))
     @post = @topic.posts.new(post_params)
     @post.user = current_user
     authorize @post
   #  byebug
-    if @post.save  # the @post.save!  will stop the app; use for troubleshooting only   
-   #  @post.votes.create!(value: 1, user: current_user)   # creates a vote for your post also
+    if @post.save  # the @post.save!  will stop the app; use for troubleshooting only  
       @post.create_vote
       flash[:notice] = "Your post was saved successfully!"
     #  redirect_to topic_post_path(@topic, @post)  # OK
@@ -47,14 +46,12 @@ class PostsController < ApplicationController
   end
 
   def edit
-    #raise
     # @topic = Topic.find(params[:topic_id]) # set_topic
     # @post = Post.find(params[:id])  # set_post
     authorize @post
   end
 
   def update
-    #raise
     # @topic = Topic.find(params[:topic_id]) # set_topic
     # @post = Post.find(params[:id])  # set_post
     authorize @post 
@@ -69,7 +66,6 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    #raise
     # @topic = Topic.find(params[:topic_id]) # set_topic   # set_post
     # @post = Post.find(params[:id])   # set_post
     authorize @post 

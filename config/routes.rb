@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   devise_for :users
-  resources :users, only: [:update]
+  resources :users, only: [:update, :show, :index]
 
   # resources :topics do
   #  	resources :posts, except: [:index] do #, controller: 'topics/posts' # this will change the route to topics/posts/	
