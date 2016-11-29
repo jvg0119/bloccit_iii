@@ -32,10 +32,5 @@ Rails.application.routes.draw do
 #  root 'welcome#index'
   root to: 'welcome#index'
 
-  get '/photos' => 'photos#index'
-  resources :photos, except: [:index]
-  resources :photos, only: [:index], controller: 'album'
-
-
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
