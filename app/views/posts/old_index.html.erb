@@ -1,0 +1,26 @@
+
+<!-- this view is no longer needed for the app; moved it to topic show page-->
+
+<h1>Posts</h1>
+
+<%# if policy(@posts).new? %>
+<%#= link_to "New Post", new_post_path, class: 'btn btn-default' if policy(@posts).new? %>
+<%= link_to "New Post*", new_topic_post_path, class: 'btn btn-default'  %>
+<%# end %>
+
+<% @posts.each do |post| %>
+	<div class="media">
+    	<div class="media-body">
+       		<h4 class="media-heading">
+            <%= post.title %>
+         		<%#= link_to post.title, post %>
+       		</h4>
+       		<p>
+       			&nbsp;&nbsp;submitted <%#= time_ago_in_words post.created_at %> ago
+         		&nbsp;&nbsp;by <%#= post.user.name %>
+         		&nbsp;&nbsp;<%#= pluralize post.comments.count, "Comment" %>
+       		</p>
+     	</div>
+   	</div>
+<% end %>
+

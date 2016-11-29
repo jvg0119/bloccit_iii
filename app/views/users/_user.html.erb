@@ -1,0 +1,18 @@
+
+<div class="media">
+	<%= link_to class: 'media-left' do %>
+		<%= image_tag(user.avatar.tiny.url, class: "media-object") if user.avatar? %>
+	<% end %>
+	<div class="media-body">
+		<h4 class="media-heading">
+			<%= link_to user.name, user_path(user) %>
+		</h4>
+		<small>
+			<%= pluralize user.posts.count, "post" %>
+			<%= pluralize user.comments.count, "comment" %>
+		</small>
+	</div>
+</div>
+
+
+

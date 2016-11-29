@@ -9,7 +9,8 @@ Rails.application.routes.draw do
   #  	end
   # end 
 
-  resources :posts, only: [] do 
+  # resources :posts, only: [] do 
+  resources :posts, only: [:index] do 
     # post '/up-vote' => 'votes#up_vote', as: 'up_vote'  
     # post '/down-vote' => 'votes#down_vote', as: 'down_vote'
     get '/up-vote' => 'votes#up_vote', as: 'up_vote'  
@@ -22,7 +23,7 @@ Rails.application.routes.draw do
   end
 
   resources :topics do 
-    resources :posts 
+    resources :posts, except: [:index], controller: 'topics/posts' 
   end
 
   get 'index' => 'welcome#index'
@@ -31,6 +32,9 @@ Rails.application.routes.draw do
 #  root 'welcome#index'
   root to: 'welcome#index'
 
+  get '/photos' => 'photos#index'
+  resources :photos, except: [:index]
+  resources :photos, only: [:index], controller: 'album'
 
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

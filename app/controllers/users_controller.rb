@@ -2,6 +2,10 @@ class UsersController < ApplicationController
 
   before_action :authenticate_user!, except: [:show]
 
+  def index
+    @users = User.all.top_rated.paginate(page: params[:page], per_page: 5)
+  end
+
   def show
     #raise
     @user = User.find(params[:id]) 
