@@ -9,7 +9,9 @@ class Comment < ApplicationRecord
 private
 
   def send_favorite_emails
+    #byebug    
   	self.post.favorites.each do |favorite|
+   # byebug
     # below are for checking only
   	#	if favorite.user && favorite.user.email_favorites?
   	   # send email to all users including the comment writer
