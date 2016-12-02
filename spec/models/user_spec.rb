@@ -34,6 +34,14 @@ describe User do
   		expect(users.first.comments_count).to eq(2)
   	end
   end
+  describe "factory :user_with_post_and_comment" do 
+    it "creates a post and a user" do
+      user = create(:user_with_post_and_comment)
+      #byebug
+      expect(user.posts.first.title).to eq("New post title") 
+      expect(user.comments.first.body).to eq("New comment body.") 
+    end
+  end
 
 end ## User
 
