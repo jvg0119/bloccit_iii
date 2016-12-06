@@ -12,7 +12,7 @@
 					 <%#= link_to "Delete Comment", topic_post_comment_path(@topic, @post, comment), method: :delete  %>
 					<%#= link_to "Delete Comment", post_comment_path(@post, comment), method: :delete %>
 					 <%#= link_to "Delete Comment", post_comment_path(comment.post, comment), method: :delete %> <!-- OK to use -->
-					   <%= link_to "Delete Comment", [comment.post, comment], method: :delete %>
+					   <%= link_to "Delete Comment", [comment.post, comment], method: :delete, remote: true %>
 					 <%# raise %>
 				<% end %>
 			</small>
