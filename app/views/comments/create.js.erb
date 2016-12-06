@@ -1,0 +1,11 @@
+//if the comment is valid
+<% if @comment.valid? %>
+	//add the comment to the list of comments
+	$('.js-comments').prepend("<%= escape_javascript(render(@comment)) %>");
+	$('.new-comment').html("<%= escape_javascript(render partial: 'comments/form', locals: { post: @post, comment: @new_comment }) %>");
+	$('.js-comments-count').html("<h3><%= pluralize(@comment.post.comments.count, 'Comment') %>:</h3>");
+
+<% else %>
+	//render an error on the form
+	$('.new-comment').html("<%= escape_javascript(render partial: 'comments/form', locals: { post: @post, comment: @comment }) %>");
+<% end %>

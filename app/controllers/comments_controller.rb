@@ -5,15 +5,20 @@ class CommentsController < ApplicationController
    # raise
   	@post = Post.find(params[:post_id])
 	  @comment = @post.comments.new(comment_params) 
-    @comment.user = current_user  
+    @comment.user = current_user 
+    @new_comment = Comment.new 
     authorize @comment
     if @comment.save
       flash[:notice] = "Your comment was successfully created!"
-      redirect_to topic_post_path(@post.topic, @post)
+      #redirect_to topic_post_path(@post.topic, @post)
     else 
       flash[:error] = "There is an error saving your comment. Please try again."
-      redirect_to topic_post_path(@post.topic, @post)
+      #redirect_to topic_post_path(@post.topic, @post)
     end 
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def destroy   

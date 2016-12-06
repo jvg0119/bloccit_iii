@@ -2,7 +2,7 @@
 
 <%#= form_for [@topic, @post, @post.comments.new] do |f|  %>
 <%#= form_for [@post, @post.comments.new] do |f|  %>
-<%= form_for [@post, Comment.new] do |f|  %>
+<%= form_for [@post, Comment.new], remote: true do |f|  %>
 	
 	<div class="form-group">
 		<%#= f.label :body %>

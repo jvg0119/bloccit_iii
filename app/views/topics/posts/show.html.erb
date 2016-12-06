@@ -53,16 +53,23 @@
 				<% if @comments.count > 0 %>
 					<div class="js-comments-count">
 						<h3><%= pluralize(@comments.count, "Comment") %>:</h3>	
+					</div>
+
+					<div class="js-comments">
+						<%#= render @comments %>
+						<%= render partial: 'comments/comment', collection: @comments %>
 					</div>	
-					<%#= render @comments %>
-					<%= render partial: 'comments/comment', collection: @comments %>
+					
 				<% end %>
 			</div>
 
 			<div class="col-md-6">
 				<%# if current_user %> <!-- this works also -->
 				<% if policy(@comments).create? %>
-					<%= render 'comments/form' %>
+					<div class="new-comment">
+						<%= render 'comments/form' %>
+					</div>
+					
 				<% end %>
 			</div>
 

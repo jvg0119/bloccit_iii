@@ -6,6 +6,8 @@ class Comment < ApplicationRecord
 
   after_create :send_favorite_emails
 
+  default_scope { order('created_at desc') }
+
 private
 
   def send_favorite_emails
